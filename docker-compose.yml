@@ -1,0 +1,5 @@
+services:
+  voice2text:
+    build: .
+    ports:
+      - "5000:5000"
