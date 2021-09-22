@@ -4,9 +4,11 @@ import torchaudio
 from glob import glob
 import os
 import uuid
+import time
 from flask import Flask, flash, request, redirect
+from pydub import AudioSegment
 
-UPLOAD_FOLDER = os.path.join(os.getcwd(), 'audio\\')
+UPLOAD_FOLDER = os.path.join(os.getcwd(), 'audio/')
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -35,21 +37,26 @@ def save_record():
     file_name = str(uuid.uuid4()) + ".wav"
     full_file_name = os.path.join(app.config['UPLOAD_FOLDER'], file_name)
     file.save(full_file_name)
-    
+
+    # convert to supported file type
+    sound = AudioSegment.from_file(full_file_name)
+    sound.export(full_file_name, format="wav")
+
     # format sample for model
     test_files = glob(full_file_name)
     app.logger.info(test_files)
     batches = split_into_batches(test_files, batch_size=10)
-    input = prepare_model_input(read_batch(batches[0]),
-                                device=device)
+    input = prepare_model_input(read_batch(batches[0]), device=device)
     
+    # remove temporary file
+    os.remove(full_file_name)
+
     # voice to text prediction
     text = ''
     output = model(input)
     for example in output:
         text += decoder(example.cpu())
-    app.logger.info(text)
-    return '<h1>Success</h1>'
+    return text
     
 
 if __name__ == "__main__":
