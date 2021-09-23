@@ -1,5 +1,6 @@
 services:
   voice2text:
+    image: rjdoubleu/voice2text:latest
     build: .
     ports:
       - "5000:5000"

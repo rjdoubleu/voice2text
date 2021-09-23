@@ -1,0 +1,62 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: voice2text
+  labels:
+    app: voice2text
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: voice2text
+  template:
+    metadata:
+      labels:
+        app: voice2text
+    spec:
+      containers:
+      - name: voice2text
+        image: rjdoubleu/voice2text:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: internal-voice2text-service
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: nlb
+    service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: 'true'
+    service.beta.kubernetes.io/aws-load-balancer-internal: 0.0.0.0/0
+spec:
+  selector:
+    app: voice2text
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 5000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: external-voice2text-service
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: nlb
+    service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: 'true'
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:us-east-1:287265690918:certificate/8108c5a4-53c9-4a13-b636-8fe11d3e863b
+    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "https"
+spec:
+  selector:
+    app: voice2text
+  type: LoadBalancer
+  ports:
+    - name: http
+      port: 80
+      targetPort: 5000
+    - name: https
+      port: 443
+      targetPort: 5000
