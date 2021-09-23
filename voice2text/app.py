@@ -12,8 +12,11 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/')
 def root():
+    return redirect('https://www.rosenblatt.ai/site', code=301)
+    
+@app.route('/site')
+def site():
     return app.send_static_file('index.html')
-
 
 @app.route('/save-record', methods=['POST'])
 def save_record():
