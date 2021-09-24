@@ -2,6 +2,9 @@
 
 FROM pytorch/pytorch
 
+ARG OPENAI_API_KEY
+ENV OPENAI_API_KEY $OPENAI_API_KEY
+
 RUN apt-get -y update
 RUN apt-get install -y ffmpeg
 

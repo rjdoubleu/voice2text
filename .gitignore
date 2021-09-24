@@ -3,4 +3,4 @@ latest_silero_models.yml
 terraform/provider.tf
 terraform/.terraform/
 
-keys.env
+*.env
