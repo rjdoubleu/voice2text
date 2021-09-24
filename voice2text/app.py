@@ -1,6 +1,7 @@
 import os
 import uuid
 import torch
+import openai
 from glob import glob
 from flask import Flask, flash, request, redirect
 from pydub import AudioSegment
@@ -60,8 +61,19 @@ def save_record():
     output = model(input)
     for example in output:
         text += decoder(example.cpu())
-    app.logger.debug('prediction: ' +  text)
-    return text
+    app.logger.debug('stt prediction: ' +  text)
+    response = openai.Completion.create(
+        engine="davinci",
+        prompt=f"{text}\n\ntl;dr:",
+        temperature=0.3,
+        max_tokens=60,
+        top_p=1.0,
+        frequency_penalty=0.0,
+        presence_penalty=0.0
+    )
+    top_summary = response['choices'][0]['text']
+    app.logger.debug('gpt3 top summary: ' +  top_summary)
+    return top_summary
     
 
 if __name__ == "__main__":
