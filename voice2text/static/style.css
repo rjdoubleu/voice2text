@@ -1,0 +1,96 @@
+body {
+    background: #F5F3EB !important;
+}
+
+h3 {
+    margin-top: 150px;
+    margin-bottom: 20px;
+    font-family:  Gascogne,Georgia,sans-serif;
+    color: #22253f;
+    font-size: 44px;
+    line-height: 58px;
+    font-weight: 400;
+    letter-spacing: .02px;
+}
+
+p {
+    margin: 25px 0px !important;
+    padding-right: 0;
+    padding-left: 0;
+    font-family: 'GT America Standard','Trebuchet MS',sans-serif;
+    color: #22253f;
+    font-size: 18px;
+    line-height: 150%;
+    font-weight: 400;
+    letter-spacing: .02em;
+    inline-size: 58;
+}
+
+img {
+    border: 0;
+    vertical-align: middle;
+    display: inline-block;
+    max-width: 100%;
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    position: static;
+}
+
+textarea {
+    font-size: .8rem;
+    letter-spacing: 1px;
+    height: 6em;
+    width: 58em;
+    padding: 10px;
+    max-width: 95%;
+    line-height: 1.5;
+    border-radius: 15px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 1px #999;
+    background-color: #FEE795;
+}
+
+.container-fluid{
+    max-width: 1600px;
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    border-radius: 15px !important;
+    padding: 15px 30px !important;
+    margin: 5px !important;
+    font-size: 18px !important;
+    font-weight: 400 !important;
+    letter-spacing: .02rem !important;
+}
+
+#startRecording { 
+    color: #0d1830;
+    border-color: #f9c511;
+    background-color: #f9c511;
+    
+}
+
+#stopRecording {
+    color: #fff;
+    border-color: #fc5d2b;
+    background-color: #fc5d2b;
+}
+
+#app {
+    max-width: 420px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+@media only screen and (max-width: 600px) {
+    body {
+        text-align: center;
+    }
+
+    h3 {
+        margin-top: 20px;
+    }
+
+}

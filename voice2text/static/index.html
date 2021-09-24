@@ -2,15 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Web Speech Recorder</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Voice2Text</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="static/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
-    <p>
-        <button id="startRecording">Start recording</button>
-        <button id="stopRecording" disabled>Stop recording</button>
-    </p>
-    <p id="text"></p>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <div  id='app'>
+                    <h3>Voice2Text</h3>
+                    <p class="hp">Use the buttons below to record your voice.</p>
+                    <div id='recording-buttons'>
+                        <button class="btn btn-primary" id="startRecording">Start Recording</button>
+                        <button class="btn btn-primary" id="stopRecording" disabled>Stop Recording</button>
+                    </div>
+                    <div>
+                        <p class="hp">When you stop recording, the model's prediction will display below.</p>
+                        <textarea id='text' name="prediction" readonly></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <img src='https://uploads-ssl.webflow.com/5eb43c7a42baf31ac0d8fdd2/61264ef05269d2988db12e3c_Group%201106.png' alt='cartoon of clinician and patient'>
+            </div>
+        </div>
+    </div>
 </body>
 <script>
     navigator
