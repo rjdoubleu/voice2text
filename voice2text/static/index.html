@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Voice2Text</title>
+    <title>Voice2Summary</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="static/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -13,14 +13,14 @@
         <div class="row">
             <div class="col">
                 <div  id='app'>
-                    <h3>Voice2Text</h3>
+                    <h3>Voice2Summary</h3>
                     <p class="hp">Use the buttons below to record your voice.</p>
                     <div id='recording-buttons'>
                         <button class="btn btn-primary" id="startRecording">Start Recording</button>
                         <button class="btn btn-primary" id="stopRecording" disabled>Stop Recording</button>
                     </div>
                     <div>
-                        <p class="hp">When you stop recording, the model's prediction will display below.</p>
+                        <p class="hp">When you stop recording, the model's summarization will display below.</p>
                         <textarea id='text' name="prediction" readonly></textarea>
                     </div>
                 </div>

@@ -3,3 +3,4 @@ omegaconf
 soundfile
 flask
 pydub
+openai
