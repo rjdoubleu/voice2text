@@ -42,8 +42,8 @@ resource "aws_eks_node_group" "nodes_general" {
   ]
 
   scaling_config {
-    desired_size = 1
-    max_size     = 1
+    desired_size = 2
+    max_size     = 3
     min_size     = 1
   }
 
@@ -51,7 +51,7 @@ resource "aws_eks_node_group" "nodes_general" {
   capacity_type        = "ON_DEMAND"
   disk_size            = 20
   force_update_version = false
-  instance_types       = ["t3.small"]
+  instance_types       = ["t3.medium"]
   labels = {
     "role" = "nodes-general"
   }
